@@ -7,21 +7,8 @@ on:
 
 jobs:
   build:
-    strategy:
-      fail-fast: false
-      matrix:
-        config:
-          - name: Windows
-            os: windows-2022
-          - name: Android32
-            os: ubuntu-latest
-            target: armv7-none-linux-androideabi
-          - name: Android64
-            os: ubuntu-latest
-            target: aarch64-linux-android
-
-    name: ${{ matrix.config.name }}
-    runs-on: ${{ matrix.config.os }}
+    name: Windows
+    runs-on: windows-2022
 
     steps:
       - uses: actions/checkout@v4
@@ -30,4 +17,3 @@ jobs:
         uses: geode-sdk/build-geode-mod@main
         with:
           bindings: geode-sdk/bindings
-          target: ${{ matrix.config.target }}
